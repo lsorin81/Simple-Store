@@ -1,6 +1,14 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# App Description
 
-# Getting Started
+Simple demo app with 3 screens, for authentication use these mock credentials:
+username: 'kminchelle',
+password: '0lelplR',
+
+![Simulator Screenshot - iPhone SE (3rd generation) - 2023-12-12 at 20 47 57](https://github.com/lsorin81/Simple-Store/assets/4928169/82c1ab5a-335b-4da0-b48d-09fbcc888754)
+![Simulator Screenshot - iPhone SE (3rd generation) - 2023-12-12 at 20 48 19](https://github.com/lsorin81/Simple-Store/assets/4928169/c8ae450f-f12e-4a12-8ea0-c88d9596c1ac)
+![Simulator Screenshot - iPhone SE (3rd generation) - 2023-12-12 at 20 48 25](https://github.com/lsorin81/Simple-Store/assets/4928169/62523d4b-1fca-47c2-b990-f3ce4cf56bd4)
+
+# Instalation
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
