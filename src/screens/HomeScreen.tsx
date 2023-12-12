@@ -2,7 +2,9 @@ import React from 'react';
 import {FlatList, ActivityIndicator, Text} from 'react-native';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProducts from '../hooks/useProducts';
-import {useNavigation} from '@react-navigation/native';
+import {RouteProp, useNavigation} from '@react-navigation/native';
+import {HomeStackParamList} from '../navigation/HomeStackNavigator';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 export type Product = {
   id: number;
@@ -18,9 +20,13 @@ export type Product = {
   images: string[];
 };
 
-export default function HomeScreen() {
+type HomeScreenNavigationProp = StackNavigationProp<HomeStackParamList, 'Home'>;
+type Props = {
+  navigation: HomeScreenNavigationProp;
+};
+
+const HomeScreen: React.FC<Props> = ({navigation}) => {
   const {products, loading, error} = useProducts();
-  const navigation = useNavigation();
 
   if (loading) {
     return <ActivityIndicator />;
@@ -44,4 +50,6 @@ export default function HomeScreen() {
       keyExtractor={item => item.id.toString()}
     />
   );
-}
+};
+
+export default HomeScreen;

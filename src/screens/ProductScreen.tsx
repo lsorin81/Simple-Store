@@ -1,18 +1,27 @@
-import {useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import useProducts from '../hooks/useProducts';
 import {Product} from './HomeScreen';
 
-const ProductScreen = () => {
-  const route = useRoute();
+import {RouteProp} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {HomeStackParamList} from '../navigation/HomeStackNavigator';
+
+type ProductScreenRouteProp = RouteProp<HomeStackParamList, 'Product'>;
+type ProductScreenNavigationProp = StackNavigationProp<
+  HomeStackParamList,
+  'Product'
+>;
+
+type Props = {
+  route: ProductScreenRouteProp;
+  navigation: ProductScreenNavigationProp;
+};
+
+const ProductScreen: React.FC<Props> = ({route}) => {
   const {productId} = route.params;
   const {products} = useProducts();
   const [product, setProduct] = useState<Product>();
-  console.log(
-    '🚀 ~ file: ProductScreen.tsx:12 ~ ProductScreen ~ product:',
-    product,
-  );
 
   useEffect(() => {
     if (productId && products && products.length) {

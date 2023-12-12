@@ -6,7 +6,13 @@ import AddProductScreen from '../screens/AddProductScreen';
 import {useAuth} from '../context/AuthContext';
 import ProductScreen from '../screens/ProductScreen';
 
-const HomeStack = createStackNavigator();
+export type HomeStackParamList = {
+  Home: undefined; // No parameters expected for HomeScreen
+  AddProduct: undefined; // Assuming no parameters for AddProductScreen
+  Product: {productId: number}; // Example parameter for ProductScreen
+};
+
+const HomeStack = createStackNavigator<HomeStackParamList>();
 
 function HomeStackNavigator() {
   const {isLoggedIn} = useAuth();
