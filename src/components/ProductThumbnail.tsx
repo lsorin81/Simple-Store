@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Product} from '../screens/HomeScreen';
 
 const ProductThumbnail = ({
@@ -12,8 +12,15 @@ const ProductThumbnail = ({
   return (
     <TouchableOpacity style={styles.item} onPress={() => onPress(item.id)}>
       <Image source={{uri: item.thumbnail}} style={styles.thumbnail} />
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.description}>{item.description}</Text>
+      <View>
+        <Text style={styles.title} numberOfLines={1}>
+          {item.title}
+        </Text>
+        <Text>${item.price}</Text>
+      </View>
+      <Text style={styles.description} numberOfLines={2} ellipsizeMode="tail">
+        {item.description}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -25,11 +32,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
-    maxWidth: 200,
+    maxWidth: 180,
   },
   thumbnail: {
-    width: 100,
-    height: 100,
+    width: 140,
+    height: 140,
+    borderRadius: 16,
     resizeMode: 'cover',
   },
   title: {
@@ -37,5 +45,6 @@ const styles = StyleSheet.create({
   },
   description: {
     color: 'gray',
+    fontSize: 12,
   },
 });

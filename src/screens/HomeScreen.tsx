@@ -1,6 +1,6 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {ActivityIndicator, FlatList, Text} from 'react-native';
+import {ActivityIndicator, FlatList, StyleSheet, Text} from 'react-native';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProducts from '../hooks/useProducts';
 import {HomeStackParamList} from '../navigation/HomeStackNavigator';
@@ -41,6 +41,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <FlatList
+      style={styles.column}
       data={products}
       numColumns={2}
       renderItem={({item}) => (
@@ -59,3 +60,10 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  column: {
+    margin: 8,
+    padding: 8,
+  },
+});
