@@ -1,10 +1,9 @@
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {FlatList, ActivityIndicator, Text} from 'react-native';
+import {ActivityIndicator, FlatList, Text} from 'react-native';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProducts from '../hooks/useProducts';
-import {RouteProp, useNavigation} from '@react-navigation/native';
 import {HomeStackParamList} from '../navigation/HomeStackNavigator';
-import {StackNavigationProp} from '@react-navigation/stack';
 
 export type Product = {
   id: number;
@@ -26,11 +25,7 @@ type Props = {
 };
 
 const HomeScreen: React.FC<Props> = ({navigation}) => {
-  const {products, loading, error} = useProducts();
-
-  if (loading) {
-    return <ActivityIndicator />;
-  }
+  const {products, loading, error, loadMoreProducts} = useProducts();
 
   if (error) {
     return <Text>Error loading products: {error}</Text>;
@@ -38,6 +33,10 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
 
   const handleProductPress = (productId: number) => {
     navigation.navigate('Product', {productId});
+  };
+
+  const renderFooter = () => {
+    return loading ? <ActivityIndicator size="large" color="#0000ff" /> : null;
   };
 
   return (
@@ -48,6 +47,13 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         <ProductThumbnail item={item} onPress={handleProductPress} />
       )}
       keyExtractor={item => item.id.toString()}
+      onEndReached={() => {
+        if (!loading) {
+          loadMoreProducts();
+        }
+      }}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={renderFooter}
     />
   );
 };
