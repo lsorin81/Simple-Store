@@ -5,12 +5,14 @@ import {Alert} from 'react-native';
 interface AuthContextData {
   isLoggedIn: boolean;
   login: (username: string, password: string) => void;
+  logout: () => void;
 }
 
 // Create the context with a default value
 const AuthContext = createContext<AuthContextData>({
   isLoggedIn: false,
   login: () => null,
+  logout: () => null,
 });
 
 export const useAuth = () => {
@@ -41,8 +43,12 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
     }
   };
 
+  const logout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
-    <AuthContext.Provider value={{isLoggedIn, login}}>
+    <AuthContext.Provider value={{isLoggedIn, login, logout}}>
       {children}
     </AuthContext.Provider>
   );

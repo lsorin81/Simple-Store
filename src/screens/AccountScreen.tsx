@@ -3,7 +3,7 @@ import {Alert, Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useAuth} from '../context/AuthContext';
 
 const AccountScreen = () => {
-  const {isLoggedIn, login} = useAuth();
+  const {isLoggedIn, login, logout} = useAuth();
   console.log('🚀 ~ file: AccountScreen.tsx:7 ~ AccountScreen ~ login:', login);
   console.log(
     '🚀 ~ file: AccountScreen.tsx:7 ~ AccountScreen ~ isLoggedIn:',
@@ -26,10 +26,13 @@ const AccountScreen = () => {
   return (
     <View style={styles.container}>
       {isLoggedIn ? (
-        <Text style={styles.welcomeText}>
-          You are logged in as an admin. You can add products from the Home
-          Page.
-        </Text>
+        <>
+          <Text style={styles.welcomeText}>
+            You are logged in as an admin. You can add products from the Home
+            Page.
+          </Text>
+          <Button title="Logout" onPress={logout} />
+        </>
       ) : (
         <View>
           <TextInput
