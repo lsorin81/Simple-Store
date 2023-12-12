@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import React from 'react';
+import {FlatList, ActivityIndicator, Text} from 'react-native';
 import ProductThumbnail from '../components/ProductThumbnail';
+import useProducts from '../hooks/useProducts';
 
 export type Product = {
   id: number;
@@ -17,17 +18,15 @@ export type Product = {
 };
 
 export default function HomeScreen() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const {products, loading, error} = useProducts();
 
-  const getProducts = async () => {
-    const res = await fetch('https://dummyjson.com/products');
-    const result = await res.json();
-    setProducts(result.products);
-  };
+  if (loading) {
+    return <ActivityIndicator />;
+  }
 
-  useEffect(() => {
-    getProducts();
-  }, []);
+  if (error) {
+    return <Text>Error loading products: {error}</Text>;
+  }
 
   return (
     <FlatList
