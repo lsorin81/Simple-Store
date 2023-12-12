@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import AddProductScreen from '../screens/AddProductScreen';
 import {useAuth} from '../context/AuthContext';
+import ProductScreen from '../screens/ProductScreen';
 
 const HomeStack = createStackNavigator();
 
@@ -28,6 +29,7 @@ function HomeStackNavigator() {
         })}
       />
       <HomeStack.Screen name="AddProduct" component={AddProductScreen} />
+      <HomeStack.Screen name="Product" component={ProductScreen} />
     </HomeStack.Navigator>
   );
 }

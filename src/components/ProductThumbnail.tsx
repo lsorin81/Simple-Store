@@ -1,14 +1,20 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Product} from '../screens/HomeScreen';
 
-const ProductThumbnail = ({item}: {item: Product}) => {
+const ProductThumbnail = ({
+  item,
+  onPress,
+}: {
+  item: Product;
+  onPress: (productId: number) => void;
+}) => {
   return (
-    <View style={styles.item}>
+    <TouchableOpacity style={styles.item} onPress={() => onPress(item.id)}>
       <Image source={{uri: item.thumbnail}} style={styles.thumbnail} />
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.description}>{item.description}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

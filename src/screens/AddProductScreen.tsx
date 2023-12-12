@@ -38,7 +38,7 @@ const AddProductScreen: React.FC = () => {
     if (result.id) {
       Alert.alert(
         'Success',
-        'New post successfully created, check Home screen!',
+        'New post successfully created, get back to Home screen now!',
         [
           {
             text: 'OK',
