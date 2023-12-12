@@ -6,6 +6,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import AccountScreen from './src/screens/AccountScreen';
+import {AuthProvider} from './src/context/AuthContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,9 @@ function MyTabs() {
 export default function App() {
   return (
     <NavigationContainer>
-      <MyTabs />
+      <AuthProvider>
+        <MyTabs />
+      </AuthProvider>
     </NavigationContainer>
   );
 }
